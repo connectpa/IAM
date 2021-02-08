@@ -33,6 +33,7 @@ under the License.
   <packaging>war</packaging>
 
   <properties>
+    <rootpom.basedir>${basedir}/..</rootpom.basedir>
     <exec.skip>true</exec.skip>
   </properties>
 
@@ -49,9 +50,40 @@ under the License.
       <artifactId>h2</artifactId>
       <scope>test</scope>
     </dependency>
+    
+    <dependency>
+      <groupId>it.connectpa</groupId>
+      <artifactId>syncope-core</artifactId>
+      <version>${project.version}</version>
+      <type>war</type>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>it.connectpa</groupId>
+      <artifactId>syncope-common</artifactId>
+      <version>${project.version}</version>
+      <type>jar</type>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>it.connectpa</groupId>
+      <artifactId>syncope-console</artifactId>
+      <version>${project.version}</version>
+      <type>war</type>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>it.connectpa</groupId>
+      <artifactId>syncope-wa</artifactId>
+      <version>${project.version}</version>
+      <type>war</type>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
+    <finalName>fit</finalName>
+
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
