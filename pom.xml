@@ -28,8 +28,8 @@ under the License.
   <properties>
     <syncope.version xmlns="">3.0.0-SNAPSHOT</syncope.version>
     <secretKey>connectpa</secretKey>
-    <anonymousKey>connectpa</anonymousKey>
-    <jwsKey>connectpa</jwsKey>
+    <anonymousUser>anonymous</anonymousUser>
+    <jwsKey>ZW7pRixehFuNUtnY5Se47IemgMryTzazPPJ9CGX5LTCmsOJpOgHAQEuPQeV9A28f</jwsKey>
     <adminPassword>DE088591C00CC98B36F5ADAAF7DA2B004CF7F2FE7BBB45B766B6409876E2F3DB13C7905C6AA59464</adminPassword>
     
     <rat.skip>true</rat.skip>
@@ -124,6 +124,7 @@ under the License.
     <module>core</module>
     <module>console</module>
     <module>wa</module>
+    <module>fit</module>
   </modules>
   
   <repositories>
