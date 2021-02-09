@@ -46,9 +46,8 @@ under the License.
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>com.h2database</groupId>
-      <artifactId>h2</artifactId>
-      <scope>test</scope>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
     </dependency>
     
     <dependency>
@@ -209,8 +208,8 @@ under the License.
             </zipUrlInstaller>
             <dependencies>
               <dependency>
-                <groupId>com.h2database</groupId>
-                <artifactId>h2</artifactId>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
               </dependency>
             </dependencies>
             <timeout>300000</timeout>
@@ -254,19 +253,69 @@ under the License.
           </deployables>
         </configuration>
       </plugin>
+      
+      <plugin>
+        <groupId>io.fabric8</groupId>
+        <artifactId>docker-maven-plugin</artifactId>
+        <configuration>
+          <images>
+            <image>
+              <name>postgres:${docker.postgresql.version}</name>
+              <run>
+                <env>
+                  <POSTGRES_DB>syncope</POSTGRES_DB>
+                  <POSTGRES_USER>syncope</POSTGRES_USER>
+                  <POSTGRES_PASSWORD>syncope</POSTGRES_PASSWORD>
+                </env>
+                <ports>
+                  <port>5432:5432</port>
+                </ports>
+              </run>
+            </image>
+          </images>
+        </configuration>
+        <executions>
+          <execution>
+            <id>build-docker</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>stop</goal>
+              <goal>remove</goal>
+              <goal>volume-remove</goal>
+              <goal>build</goal>
+            </goals>
+          </execution>
+          <execution> 
+            <id>start-docker</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>start</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>stop-docker</id>
+            <phase>post-integration-test</phase>
+            <goals>
+              <goal>stop</goal>
+              <goal>remove</goal>
+              <goal>volume-remove</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins> 
   </build>
   
   <profiles>
     <profile>
-      <id>embedded</id>
+      <id>debug</id>
 
       <properties>
         <exec.skip>false</exec.skip>
       </properties>
 
       <build>
-        <defaultGoal>clean verify cargo:run</defaultGoal>  
+        <defaultGoal>clean package io.fabric8:docker-maven-plugin:build io.fabric8:docker-maven-plugin:start cargo:run</defaultGoal>
       </build>
     </profile>
   </profiles>

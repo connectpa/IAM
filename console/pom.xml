@@ -74,55 +74,6 @@ under the License.
 
   <profiles>
     <profile>
-      <id>all</id>
-      
-      <dependencies>
-        <dependency>
-          <groupId>org.apache.syncope.ext.flowable</groupId>
-          <artifactId>syncope-ext-flowable-client-console</artifactId>
-          <version>${syncope.version}</version>
-        </dependency>
-
-        <dependency>
-          <groupId>org.apache.syncope.ext.camel</groupId>
-          <artifactId>syncope-ext-camel-client-console</artifactId>
-          <version>${syncope.version}</version>
-        </dependency> 
-
-        <dependency>
-          <groupId>org.apache.syncope.ext.saml2sp4ui</groupId>
-          <artifactId>syncope-ext-saml2sp4ui-client-console</artifactId>
-          <version>${syncope.version}</version>
-        </dependency>
-        
-        <dependency>
-          <groupId>org.apache.syncope.ext.oidcc4ui</groupId>
-          <artifactId>syncope-ext-oidcc4ui-client-console</artifactId>
-          <version>${syncope.version}</version>
-        </dependency>
-        
-        <dependency>
-          <groupId>org.apache.syncope.ext.scimv2</groupId>
-          <artifactId>syncope-ext-scimv2-client-console</artifactId>
-          <version>${syncope.version}</version>
-        </dependency>
-      </dependencies>
-
-      <build>
-        <resources>
-          <resource>
-            <directory>src/main/resources</directory>
-            <filtering>true</filtering>
-          </resource>
-          <resource>
-            <directory>src/main/resources/all</directory>
-            <filtering>true</filtering>
-          </resource>
-        </resources>
-      </build>
-    </profile>
-    
-    <profile>
       <id>executable</id>
       
       <dependencies>
