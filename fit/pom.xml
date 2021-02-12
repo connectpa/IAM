@@ -244,6 +244,9 @@
               <goal>volume-remove</goal>
               <goal>build</goal>
             </goals>
+            <configuration>
+              <skip>${skipTests}</skip>
+            </configuration>
           </execution>
           <execution> 
             <id>start-docker</id>
@@ -251,6 +254,9 @@
             <goals>
               <goal>start</goal>
             </goals>
+            <configuration>
+              <skip>${skipTests}</skip>
+            </configuration>
           </execution>
           <execution>
             <id>stop-docker</id>
@@ -260,6 +266,9 @@
               <goal>remove</goal>
               <goal>volume-remove</goal>
             </goals>
+            <configuration>
+              <skip>${skipTests}</skip>
+            </configuration>
           </execution>
         </executions>
       </plugin>
