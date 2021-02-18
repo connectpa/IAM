@@ -52,6 +52,11 @@
       <artifactId>syncope-core-persistence-jpa-json</artifactId>
       <version>${syncope.version}</version>
     </dependency>
+    
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+    </dependency>
   </dependencies>
 
   <build>
