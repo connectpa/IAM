@@ -21,11 +21,6 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.postgresql</groupId>
-      <artifactId>postgresql</artifactId>
-    </dependency>
-    
-    <dependency>
       <groupId>it.connectpa</groupId>
       <artifactId>syncope-core</artifactId>
       <version>${project.version}</version>
@@ -174,12 +169,6 @@
               <downloadDir>${settings.localRepository}/org/codehaus/cargo/cargo-container-archives</downloadDir>
               <extractDir>${project.build.directory}/cargo/extract</extractDir>
             </zipUrlInstaller>
-            <dependencies>
-              <dependency>
-                <groupId>org.postgresql</groupId>
-                <artifactId>postgresql</artifactId>
-              </dependency>
-            </dependencies>
             <timeout>300000</timeout>
             <log>${cargo.log}</log>
             <output>${cargo.output}</output> 
