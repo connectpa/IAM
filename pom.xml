@@ -29,8 +29,8 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.apache.syncope.common.idm</groupId>
-        <artifactId>syncope-common-idm-lib</artifactId>
+        <groupId>org.apache.syncope.common.am</groupId>
+        <artifactId>syncope-common-am-lib</artifactId>
         <version>${syncope.version}</version>
       </dependency>
       
@@ -40,19 +40,14 @@
         <version>${syncope.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.apache.syncope.core.idm</groupId>
-        <artifactId>syncope-core-idm-rest-cxf</artifactId>
-        <version>${syncope.version}</version>
-      </dependency>
-      <dependency>
         <groupId>org.apache.syncope.core.am</groupId>
         <artifactId>syncope-core-am-rest-cxf</artifactId>
         <version>${syncope.version}</version>
       </dependency>
 
       <dependency>
-        <groupId>org.apache.syncope.client.idm</groupId>
-        <artifactId>syncope-client-idm-console</artifactId>
+        <groupId>org.apache.syncope.client.am</groupId>
+        <artifactId>syncope-client-am-console</artifactId>
         <version>${syncope.version}</version>
       </dependency>
 

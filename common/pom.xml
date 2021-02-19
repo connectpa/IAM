@@ -17,8 +17,8 @@
   <dependencies>
 
     <dependency>
-      <groupId>org.apache.syncope.common.idm</groupId>
-      <artifactId>syncope-common-idm-lib</artifactId>
+      <groupId>org.apache.syncope.common.am</groupId>
+      <artifactId>syncope-common-am-lib</artifactId>
     </dependency>
 
   </dependencies>

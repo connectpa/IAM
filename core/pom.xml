@@ -26,10 +26,6 @@
       <artifactId>syncope-core-starter</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.apache.syncope.core.idm</groupId>
-      <artifactId>syncope-core-idm-rest-cxf</artifactId>
-    </dependency>
-    <dependency>
       <groupId>org.apache.syncope.core.am</groupId>
       <artifactId>syncope-core-am-rest-cxf</artifactId>
     </dependency>
