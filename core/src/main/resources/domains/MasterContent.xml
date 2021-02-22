@@ -111,4 +111,8 @@ we are happy to inform you that the password request was successfully executed f
                   body='{"_class":"org.apache.syncope.common.lib.report.ReconciliationReportletConf","name":"dashboardReconciliationReportlet","userMatchingCond":null,"groupMatchingCond":null,"anyObjectMatchingCond":null,"features":["key","username","groupName"]}'/>
   <ReportReportlet report_id="c3520ad9-179f-49e7-b315-d684d216dd97" implementation_id="ReconciliationReportletConf"/>
 
+  <AuthModule description="Syncope Authentication Module using REST endpoint" id="SyncopeAuthModule"
+              jsonConf='{"_class":"org.apache.syncope.common.lib.auth.SyncopeAuthModuleConf","domain":"Master"}'/>
+  <AuthModuleItem id="883135c2-0129-496c-b135-c20129696ce7" intAttrName="syncopeUserAttr_email" authModule_id="SyncopeAuthModule" extAttrName="email"
+                  password="0" purpose="NONE" mandatoryCondition="false" connObjectKey="0"/>
 </dataset>

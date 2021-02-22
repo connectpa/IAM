@@ -84,41 +84,6 @@
         <inherited>true</inherited>
         <executions>
           <execution>
-            <id>addFlowableTestContent</id>
-            <phase>prepare-package</phase>
-            <configuration>
-              <target>
-                <taskdef resource="net/sf/antcontrib/antcontrib.properties"
-                         classpathref="maven.plugin.classpath"/>
-
-                <if>
-                  <not>
-                    <available file="../core/target/test-classes/backup/MasterContent.xml"/>
-                  </not>
-                  <then>
-                    <mkdir dir="../core/target/test-classes/backup"/>
-                    <copy file="../core/target/test-classes/domains/MasterContent.xml" 
-                          todir="../core/target/test-classes/backup"/>
-                  </then>
-                </if>
-                <if>
-                  <available file="../core/target/syncope/WEB-INF/lib/flowable-engine-${flowable.version}.jar"/>
-                  <then>
-                    <xslt basedir="../core/target/test-classes/backup" 
-                          includes="MasterContent.xml"
-                          destdir="../core/target/test-classes/domains"
-                          extension=".xml"
-                          force="true"
-                          style="../core/src/test/resources/addFlowableToContent.xsl"/>
-                  </then>
-                </if>
-              </target>
-            </configuration>
-            <goals>
-              <goal>run</goal>
-            </goals>
-          </execution>
-          <execution>
             <id>setupEmbeddedConf</id>
             <phase>package</phase>
             <configuration>
@@ -148,13 +113,6 @@
             </goals>
           </execution>
         </executions>
-        <dependencies>
-          <dependency>
-            <groupId>ant-contrib</groupId>
-            <artifactId>ant-contrib</artifactId>
-            <version>20020829</version>
-          </dependency>
-        </dependencies>
       </plugin>
       
       <plugin>
@@ -177,7 +135,7 @@
             <properties>
               <cargo.jvmargs>
                 -Dspring.profiles.active=embedded
-                -XX:+CMSClassUnloadingEnabled -Xmx1024m -Xms512m</cargo.jvmargs>
+                -XX:+CMSClassUnloadingEnabled -XX:+UseG1GC -Xmx1024m -Xms512m</cargo.jvmargs>
             </properties>
           </configuration>
           <deployables>
@@ -216,6 +174,12 @@
                   <POSTGRES_USER>syncope</POSTGRES_USER>
                   <POSTGRES_PASSWORD>syncope</POSTGRES_PASSWORD>
                 </env>
+                <tmpfs>
+                  <mount>/var/lib/postgresql/data:rw</mount>
+                </tmpfs>
+                <log>
+                  <enabled>false</enabled>
+                </log>
                 <ports>
                   <port>5432:5432</port>
                 </ports>
@@ -274,6 +238,25 @@
 
       <build>
         <defaultGoal>clean package io.fabric8:docker-maven-plugin:build io.fabric8:docker-maven-plugin:start cargo:run</defaultGoal>
+
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.cargo</groupId>
+            <artifactId>cargo-maven3-plugin</artifactId>
+            <inherited>true</inherited>
+            <configuration>
+              <configuration>
+                <properties>
+                  <cargo.jvmargs>
+                    -Xdebug -Djaxb.debug=true -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n
+                    -Dwicket.configuration=development
+                    -Dspring.profiles.active=embedded
+                    -XX:+CMSClassUnloadingEnabled -XX:+UseG1GC -Xmx1024m -Xms512m</cargo.jvmargs>
+                </properties>
+              </configuration>
+            </configuration>
+          </plugin>
+        </plugins>
       </build>
     </profile>
   </profiles>
